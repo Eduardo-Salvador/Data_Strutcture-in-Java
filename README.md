@@ -28,3 +28,15 @@ Cada tópico está organizado em pastas dedicadas com arquivos README detalhados
 </div>
 
 ## Topics: 
+
+#### BigO Complexity
+#### Arrays
+#### Stacks
+#### Queues
+#### Lists
+#### Divide and Conquer Algorithms
+#### Recursion Algorithms
+#### Searching Algorithms
+
+#### Sorting Algorithms
+
