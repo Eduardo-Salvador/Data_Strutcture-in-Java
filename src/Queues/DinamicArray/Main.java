@@ -1,8 +1,8 @@
-package Queues.StaticArray;
+package Queues.DinamicArray;
 
 public class Main {
     public static void main(String[] args) {
-        StaticQueue<Integer> queue = new StaticQueue<>(10);
+        DinamicQueue<Integer> queue = new DinamicQueue<>(10);
         System.out.println("Is empty? " + queue.isEmpty());
         queue.enqueue(10);
         queue.enqueue(20);
@@ -38,10 +38,8 @@ public class Main {
         queue.enqueue(90);
         queue.enqueue(100);
         System.out.println("Is full? " + queue.isFull());
-        try {
-            queue.enqueue(1);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        System.out.println(queue.size());
+        queue.enqueue(1);
+        System.out.println(queue.size());
     }
 }

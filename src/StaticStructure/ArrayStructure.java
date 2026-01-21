@@ -4,6 +4,7 @@ public class ArrayStructure<T>{
     protected T[] elements;
     protected int size;
 
+    @SuppressWarnings("unchecked")
     protected ArrayStructure(int capacity) {
         if (capacity < 0){
             throw new IllegalArgumentException("Initial capacity cannot be negative");
@@ -16,7 +17,7 @@ public class ArrayStructure<T>{
         this(10);
     }
 
-    protected boolean isFull(){
+    public boolean isFull(){
         return size == elements.length;
     }
 
@@ -38,6 +39,7 @@ public class ArrayStructure<T>{
         this.size++;
     }
 
+    @SuppressWarnings("unchecked")
     private void increaseCapacity(){
         if (size == elements.length) {
             T[] newElements = (T[]) new Object[elements.length * 2];

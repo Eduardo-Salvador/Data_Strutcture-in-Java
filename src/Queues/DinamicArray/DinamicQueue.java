@@ -1,23 +1,19 @@
-package Queues.StaticArray;
+package Queues.DinamicArray;
 import StaticStructure.ArrayStructure;
 import java.util.Arrays;
 
-public class StaticQueue <T> extends ArrayStructure<T> {
+public class DinamicQueue<T> extends ArrayStructure<T> {
 
-    public StaticQueue(int capacity){
+    public DinamicQueue(int capacity){
         super(capacity);
     }
 
-    public StaticQueue(){
+    public DinamicQueue(){
         super();
     }
 
     public void enqueue(T element){
-        if (isFull()){
-            throw new RuntimeException("Overflow");
-        }
-        elements[size] = element;
-        size++;
+        super.add(element);
     }
 
     public T dequeue(){
