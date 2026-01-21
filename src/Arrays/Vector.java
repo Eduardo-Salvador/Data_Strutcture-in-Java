@@ -1,64 +1,37 @@
 package Arrays;
+import StaticStructure.StaticStructure;
 
-public class Vector <T> {
-    private T[] elements;
-    private int size;
-
+public class Vector <T> extends StaticStructure<T> {
     public Vector(int capacity) {
-        if (capacity < 0){
-            throw new IllegalArgumentException("Initial capacity cannot be negative");
-        }
-        this.elements = (T[]) new Object[capacity];
-        this.size = 0;
+        super(capacity);
     }
 
     public Vector(){
-        this.elements = (T[]) new Object[10];
-        this.size = 0;
-    }
-
-    private void increaseCapacity(){
-        if (size == elements.length) {
-            T[] newElements = (T[]) new Object[elements.length * 2];
-            for (int i = 0; i < elements.length; i++) {
-                newElements[i] = elements[i];
-            }
-            elements = newElements;
-        }
+        super();
     }
 
     public boolean isEmpty(){
-        return size == 0;
+        return super.isEmpty();
     }
 
     public void add(T element) {
-        increaseCapacity();
-        elements[size] = element;
-        size++;
+        super.add(element);
     }
 
     public void add(int index, T element) {
-        if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
-        }
-        increaseCapacity();
-        for (int i = size; i > index; i--) {
-            elements[i] = elements[i - 1];
-        }
-        elements[index] = element;
-        size++;
+        super.add(index, element);
     }
 
     public T get(int index){
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size());
         }
         return elements[index];
     }
 
     public T set(int index, T element){
         if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size());
         }
         T oldElement = elements[index];
         elements[index] = element;
@@ -100,7 +73,7 @@ public class Vector <T> {
     }
 
     public int size(){
-        return this.size;
+        return super.size();
     }
 
     public boolean contains(T element){
@@ -139,14 +112,6 @@ public class Vector <T> {
 
     @Override
     public String toString() {
-        if (size == 0) return "Vector[]";
-
-        StringBuilder sb = new StringBuilder("Vector[");
-        for (int i = 0; i < size; i++) {
-            sb.append(elements[i]);
-            if (i < size - 1) sb.append(", ");
-        }
-        sb.append("]");
-        return sb.toString();
+        return super.toString();
     }
 }
