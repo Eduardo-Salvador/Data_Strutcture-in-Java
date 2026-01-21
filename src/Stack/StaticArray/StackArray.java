@@ -1,7 +1,7 @@
 package Stack.StaticArray;
-import StaticStructure.StaticStructure;
+import StaticStructure.ArrayStructure;
 
-public class StackArray <T> extends StaticStructure<T> {
+public class StackArray <T> extends ArrayStructure<T> {
 
     public StackArray(int capacity){
         super(capacity);
@@ -15,14 +15,15 @@ public class StackArray <T> extends StaticStructure<T> {
         if(size - 1 == elements.length - 1){
             throw new RuntimeException("Overflow");
         }
-        super.add(value);
+        elements[size] = value;
+        size++;
     }
 
     public T peek(){
         if (this.isEmpty()) {
             throw new RuntimeException("Stack is empty");
         }
-        return elements[size];
+        return elements[size-1];
     }
 
     public T pop(){

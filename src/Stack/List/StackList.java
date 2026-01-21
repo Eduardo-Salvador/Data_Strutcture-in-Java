@@ -21,8 +21,8 @@ public class StackList<T> {
         if (isEmpty()) {
             throw new RuntimeException("Underflow");
         }
-        T valuePop = datas.get(datas.size() - 1);
-        datas.remove(datas.size() - 1);
+        T valuePop = datas.getLast();
+        datas.removeLast();
         return valuePop;
     }
 
@@ -34,12 +34,8 @@ public class StackList<T> {
     }
 
     public int search(T element){
-        if (!isEmpty()){
-            for (int i = 0; i < datas.size(); i++) {
-                if (datas.get(i).equals(element)){
-                    return datas.size() - i;
-                }
-            }
+        if (datas.contains(element)){
+            return datas.indexOf(element);
         }
         return -1;
     }
@@ -50,9 +46,9 @@ public class StackList<T> {
 
     @Override
     public String toString() {
-        if (isEmpty()) return "Stack[]";
+        if (isEmpty()) return "[]";
 
-        StringBuilder sb = new StringBuilder("Stack [");
+        StringBuilder sb = new StringBuilder("[");
         for (int i = datas.size() - 1; i >= 0; i--) {
             sb.append("\n").append(datas.get(i));
             if (i > 0) sb.append(", ");

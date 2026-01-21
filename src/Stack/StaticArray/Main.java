@@ -11,7 +11,7 @@ public class Main {
         stack.push("Pagina 5");
         System.out.println("Is empty? " + stack.isEmpty());
         System.out.println(stack.peek());
-        stack.pop();
+        System.out.println(stack.pop());
         System.out.println(stack);
         System.out.println(stack.search("Pagina 3"));
     }

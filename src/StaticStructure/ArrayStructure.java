@@ -1,10 +1,10 @@
 package StaticStructure;
 
-public class StaticStructure <T>{
+public class ArrayStructure<T>{
     protected T[] elements;
     protected int size;
 
-    protected StaticStructure(int capacity) {
+    protected ArrayStructure(int capacity) {
         if (capacity < 0){
             throw new IllegalArgumentException("Initial capacity cannot be negative");
         }
@@ -12,7 +12,7 @@ public class StaticStructure <T>{
         this.size = 0;
     }
 
-    protected StaticStructure(){
+    protected ArrayStructure(){
         this(10);
     }
 

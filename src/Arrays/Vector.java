@@ -1,7 +1,7 @@
 package Arrays;
-import StaticStructure.StaticStructure;
+import StaticStructure.ArrayStructure;
 
-public class Vector <T> extends StaticStructure<T> {
+public class Vector <T> extends ArrayStructure<T> {
     public Vector(int capacity) {
         super(capacity);
     }
