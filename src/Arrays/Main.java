@@ -33,5 +33,13 @@ public class Main {
         System.out.println(names);
         names.clear();
         System.out.println(names);
+
+        //Testing different constructors
+        try {
+            Vector<String> newArray = new Vector<>(-5);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+        }
+        Vector<String> newArray = new Vector<>();
     }
 }

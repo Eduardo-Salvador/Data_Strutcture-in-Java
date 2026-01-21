@@ -4,9 +4,27 @@ public class Vector <T> {
     private T[] elements;
     private int size;
 
-    public Vector(final int capacity) {
+    public Vector(int capacity) {
+        if (capacity < 0){
+            throw new IllegalArgumentException("Initial capacity cannot be negative");
+        }
         this.elements = (T[]) new Object[capacity];
         this.size = 0;
+    }
+
+    public Vector(){
+        this.elements = (T[]) new Object[10];
+        this.size = 0;
+    }
+
+    private void increaseCapacity(){
+        if (size == elements.length) {
+            T[] newElements = (T[]) new Object[elements.length * 2];
+            for (int i = 0; i < elements.length; i++) {
+                newElements[i] = elements[i];
+            }
+            elements = newElements;
+        }
     }
 
     public boolean isEmpty(){
@@ -15,10 +33,8 @@ public class Vector <T> {
 
     public void add(T element) {
         increaseCapacity();
-        if (size < elements.length) {
-            elements[size] = element;
-            size++;
-        }
+        elements[size] = element;
+        size++;
     }
 
     public void add(int index, T element) {
@@ -31,16 +47,6 @@ public class Vector <T> {
         }
         elements[index] = element;
         size++;
-    }
-
-    private void increaseCapacity(){
-        if (size == elements.length) {
-            T[] newElements = (T[]) new Object[elements.length * 2];
-            for (int i = 0; i < elements.length; i++) {
-                newElements[i] = elements[i];
-            }
-            elements = newElements;
-        }
     }
 
     public T get(int index){
@@ -75,18 +81,6 @@ public class Vector <T> {
         return elementRemoved;
     }
 
-    public int indexOf(T element){
-        for (int i = 0; i < size; i++) {
-            if (element == null && elements[i] == null) {
-                return i;
-            }
-            if (element != null && element.equals(elements[i])) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
     public boolean remove(T element){
         int index = indexOf(element);
         if (index != -1){
@@ -94,6 +88,15 @@ public class Vector <T> {
             return true;
         }
         return false;
+    }
+
+    public int indexOf(T element){
+        for (int i = 0; i < size; i++) {
+            if (element != null && element.equals(elements[i])) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public int size(){
@@ -126,10 +129,7 @@ public class Vector <T> {
     }
 
     public int lastIndexOf(T element){
-        for (int i = size - 1; i > 0; i--) {
-            if (element == null && elements[i] == null) {
-                return i;
-            }
+        for (int i = size-1; i >= 0; i--) {
             if (element != null && element.equals(elements[i])) {
                 return i;
             }
