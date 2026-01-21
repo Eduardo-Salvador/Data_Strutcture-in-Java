@@ -10,10 +10,6 @@ public class Vector <T> extends StaticStructure<T> {
         super();
     }
 
-    public boolean isEmpty(){
-        return super.isEmpty();
-    }
-
     public void add(T element) {
         super.add(element);
     }
@@ -72,10 +68,6 @@ public class Vector <T> extends StaticStructure<T> {
         return -1;
     }
 
-    public int size(){
-        return super.size();
-    }
-
     public boolean contains(T element){
         return indexOf(element) != -1;
     }
@@ -108,10 +100,5 @@ public class Vector <T> extends StaticStructure<T> {
             }
         }
         return -1;
-    }
-
-    @Override
-    public String toString() {
-        return super.toString();
     }
 }

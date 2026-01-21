@@ -16,22 +16,8 @@ public class StaticStructure <T>{
         this(10);
     }
 
-    protected boolean isEmpty(){
-        return size == 0;
-    }
-
     protected boolean isFull(){
         return size == elements.length;
-    }
-
-    private void increaseCapacity(){
-        if (size == elements.length) {
-            T[] newElements = (T[]) new Object[elements.length * 2];
-            for (int i = 0; i < elements.length; i++) {
-                newElements[i] = elements[i];
-            }
-            elements = newElements;
-        }
     }
 
     protected void add(T element) {
@@ -52,7 +38,21 @@ public class StaticStructure <T>{
         this.size++;
     }
 
-    protected int size(){
+    private void increaseCapacity(){
+        if (size == elements.length) {
+            T[] newElements = (T[]) new Object[elements.length * 2];
+            for (int i = 0; i < elements.length; i++) {
+                newElements[i] = elements[i];
+            }
+            elements = newElements;
+        }
+    }
+
+    public boolean isEmpty(){
+        return size == 0;
+    }
+
+    public int size(){
         return this.size;
     }
 
