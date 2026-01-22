@@ -55,7 +55,7 @@ public class ArrayStructure<T>{
     }
 
     public int size(){
-        return this.size;
+        return size - 1;
     }
 
     @Override

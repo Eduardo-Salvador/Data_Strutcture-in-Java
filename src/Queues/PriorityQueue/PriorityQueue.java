@@ -1,7 +1,7 @@
 package Queues.PriorityQueue;
-import Queues.DinamicArray.DinamicQueue;
+import Queues.NormalQueue.Queue;
 
-public class PriorityQueue<T> extends DinamicQueue<T> {
+public class PriorityQueue<T> extends Queue<T> {
 
     public PriorityQueue(int capacity){
         super(capacity);

@@ -1,4 +1,4 @@
-package Stack.DinamicArray;
+package Stack.Array;
 import StaticStructure.ArrayStructure;
 
 public class StackArray <T> extends ArrayStructure<T> {

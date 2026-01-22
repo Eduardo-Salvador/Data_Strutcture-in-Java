@@ -21,10 +21,10 @@ public class Main {
         arrayList.add(4, 10.33);
         System.out.println(arrayList);
         System.out.println(arrayList.get(4));
-        arrayList.remove(11);
+        System.out.println(arrayList.remove(11));
         System.out.println(arrayList);
         System.out.println(arrayList.size());
-        arrayList.remove(10.5);
+        System.out.println(arrayList.remove(10.5));
         arrayList.set(2, 10.22);
         System.out.println(arrayList);
         System.out.println(arrayList.size());
@@ -33,5 +33,6 @@ public class Main {
         arrayList.clear();
         System.out.println(arrayList);
         System.out.println("is Empty? " + arrayList.isEmpty());
+        arrayList.resize(40);
     }
 }

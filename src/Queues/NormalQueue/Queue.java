@@ -1,14 +1,14 @@
-package Queues.DinamicArray;
+package Queues.NormalQueue;
 import StaticStructure.ArrayStructure;
 import java.util.Arrays;
 
-public class DinamicQueue<T> extends ArrayStructure<T> {
+public class Queue<T> extends ArrayStructure<T> {
 
-    public DinamicQueue(int capacity){
+    public Queue(int capacity){
         super(capacity);
     }
 
-    public DinamicQueue(){
+    public Queue(){
         super();
     }
 

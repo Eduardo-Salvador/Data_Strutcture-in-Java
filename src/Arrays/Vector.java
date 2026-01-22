@@ -2,6 +2,7 @@ package Arrays;
 import StaticStructure.ArrayStructure;
 
 public class Vector <T> extends ArrayStructure<T> {
+
     public Vector(int capacity) {
         super(capacity);
     }
