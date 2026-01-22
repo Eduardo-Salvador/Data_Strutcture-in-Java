@@ -1,21 +1,14 @@
 package Lists.LinkedList;
+import DinamicStructure.NodeStructure;
+
 import java.lang.reflect.Array;
 
-public class LinkedList<T> {
+public class LinkedList<T> extends NodeStructure<T> {
     private Node<T> head;
-    private int size;
 
     public LinkedList() {
+        super();
         head = null;
-        size = 0;
-    }
-
-    public boolean isEmpty() {
-        return head == null;
-    }
-
-    public int size() {
-        return size - 1;
     }
 
     public void add(int index, T element) {
