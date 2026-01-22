@@ -1,8 +1,8 @@
-package Stack.List;
+package Stack.DinamicArray;
 
 public class Main {
     public static void main(String[] args) {
-        StackList<String> stack = new StackList<>();
+        StackDinamicArray<String> stack = new StackDinamicArray<>(5);
         System.out.println("Is empty? " + stack.isEmpty());
         stack.push("Pagina 1");
         stack.push("Pagina 2");
@@ -14,9 +14,10 @@ public class Main {
         System.out.println(stack.pop());
         System.out.println(stack);
         System.out.println(stack.search("Pagina 3"));
-        stack.push("Pagina 10");
-        stack.push("Pagina 11");
-        stack.push("Pagina 12");
+        stack.push("Pagina 5");
+        stack.push("Pagina 6");
+        stack.push("Pagina 7");
+        stack.push("Pagina 8");
         System.out.println(stack);
         System.out.println(stack.size());
     }

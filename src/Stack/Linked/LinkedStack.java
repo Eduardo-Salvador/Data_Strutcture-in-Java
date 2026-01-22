@@ -1,5 +1,6 @@
 package Stack.Linked;
 import DinamicStructure.NodeStructure;
+import java.lang.reflect.Array;
 
 public class LinkedStack<T> extends NodeStructure<T> {
     private Node<T> head;
@@ -72,8 +73,8 @@ public class LinkedStack<T> extends NodeStructure<T> {
     }
 
     @SuppressWarnings("unchecked")
-    public T[] toArray() {
-        T[] array = (T[]) new Object[size];
+    public T[] toArray(Class<T> clazz) {
+        T[] array = (T[]) Array.newInstance(clazz, size);
         Node<T> current = head;
         int index = 0;
 

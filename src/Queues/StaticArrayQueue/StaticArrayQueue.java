@@ -1,19 +1,23 @@
-package Queues.NormalQueue;
+package Queues.StaticArrayQueue;
 import StaticStructure.ArrayStructure;
 import java.util.Arrays;
 
-public class Queue<T> extends ArrayStructure<T> {
+public class StaticArrayQueue<T> extends ArrayStructure<T> {
 
-    public Queue(int capacity){
+    public StaticArrayQueue(int capacity){
         super(capacity);
     }
 
-    public Queue(){
+    public StaticArrayQueue(){
         super();
     }
 
     public void enqueue(T element){
-        super.add(element);
+        if(isFull()){
+            throw new RuntimeException("Queue is Full");
+        }
+        elements[size] = element;
+        this.size++;
     }
 
     public T dequeue(){
@@ -48,7 +52,7 @@ public class Queue<T> extends ArrayStructure<T> {
             return;
         }
         Arrays.fill(elements, null);
-        size = 0;
+        this.size = 0;
     }
 
     public boolean contains(T element){

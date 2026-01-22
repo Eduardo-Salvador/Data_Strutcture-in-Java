@@ -1,5 +1,7 @@
 package Stack.Linked;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
         LinkedStack<String> stack = new LinkedStack<>();
@@ -20,5 +22,7 @@ public class Main {
         stack.push("Pagina 8");
         System.out.println(stack);
         System.out.println(stack.size());
+        String[] array = stack.toArray(String.class);
+        System.out.println("Array: " + Arrays.toString(array));
     }
 }

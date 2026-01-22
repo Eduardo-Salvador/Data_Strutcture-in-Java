@@ -1,8 +1,8 @@
-package Queues.NormalQueue;
+package Queues.LinkedQueue;
 
 public class Main {
     public static void main(String[] args) {
-        Queue<Integer> queue = new Queue<>(10);
+        LinkedQueue<Integer> queue = new LinkedQueue<>();
         System.out.println("Is empty? " + queue.isEmpty());
         queue.enqueue(10);
         queue.enqueue(20);
@@ -18,14 +18,12 @@ public class Main {
         System.out.println(queue.contains(30));
         System.out.println(queue.contains(100));
         System.out.println(queue.peek());
-        System.out.println("Is full? " + queue.isFull());
         System.out.println("Is empty? " + queue.isEmpty());
         System.out.println(queue.dequeue());
         System.out.println(queue.dequeue());
         queue.list();
-        System.out.println("Is full? " + queue.isFull());
-        queue.list();
         queue.clear();
+        System.out.println(queue);
         System.out.println("Is empty? " + queue.isEmpty());
         queue.enqueue(10);
         queue.enqueue(20);
@@ -37,9 +35,10 @@ public class Main {
         queue.enqueue(80);
         queue.enqueue(90);
         queue.enqueue(100);
-        System.out.println("Is full? " + queue.isFull());
         System.out.println(queue.size());
         queue.enqueue(1);
         System.out.println(queue.size());
+        queue.list();
+        System.out.println(queue);
     }
 }

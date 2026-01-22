@@ -1,12 +1,12 @@
-package Stack.Array;
+package Stack.DinamicArray;
 import StaticStructure.ArrayStructure;
 
-public class StackArray <T> extends ArrayStructure<T> {
-    public StackArray(int capacity){
+public class StackDinamicArray<T> extends ArrayStructure<T> {
+    public StackDinamicArray(int capacity){
         super(capacity);
     }
 
-    public StackArray(){
+    public StackDinamicArray(){
         super();
     }
 
