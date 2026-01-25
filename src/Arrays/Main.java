@@ -15,7 +15,7 @@ public class Main {
         try {
             System.out.println(names.get(5));
         } catch (Exception e) {
-            System.out.println(e);;
+            System.out.println(e);
         }
 
         System.out.println(names.set(2, "Vanessa Silva"));

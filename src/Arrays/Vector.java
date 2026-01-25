@@ -3,7 +3,7 @@ import StaticStructure.ArrayStructure;
 
 public class Vector <T> extends ArrayStructure<T> {
 
-    public Vector(int capacity) {
+    public Vector(int capacity) throws IllegalArgumentException {
         super(capacity);
     }
 
@@ -15,18 +15,18 @@ public class Vector <T> extends ArrayStructure<T> {
         super.add(element);
     }
 
-    public void add(int index, T element) {
+    public void add(int index, T element) throws IndexOutOfBoundsException {
         super.add(index, element);
     }
 
-    public T get(int index){
+    public T get(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= size()) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size());
         }
         return elements[index];
     }
 
-    public T set(int index, T element){
+    public T set(int index, T element) throws IndexOutOfBoundsException {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size());
         }
@@ -35,7 +35,7 @@ public class Vector <T> extends ArrayStructure<T> {
         return oldElement;
     }
 
-    public T remove(int index){
+    public T remove(int index) throws IndexOutOfBoundsException {
         if (isEmpty()){
             return null;
         }

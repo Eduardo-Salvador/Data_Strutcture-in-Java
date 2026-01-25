@@ -5,7 +5,7 @@ public class ArrayStructure<T>{
     protected int size;
 
     @SuppressWarnings("unchecked")
-    protected ArrayStructure(int capacity) {
+    protected ArrayStructure(int capacity) throws IllegalArgumentException {
         if (capacity < 0){
             throw new IllegalArgumentException("Initial capacity cannot be negative");
         }
@@ -27,7 +27,7 @@ public class ArrayStructure<T>{
         this.size++;
     }
 
-    protected void add(int index, T element) {
+    protected void add(int index, T element) throws IndexOutOfBoundsException {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         }
