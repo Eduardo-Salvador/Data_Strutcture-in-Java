@@ -7,7 +7,6 @@ public class Main {
         stack.push("Pagina 1");
         stack.push("Pagina 2");
         stack.push("Pagina 3");
-        stack.push(2, "Pagina 4");
         stack.push("Pagina 5");
         System.out.println("Is empty? " + stack.isEmpty());
         System.out.println(stack.peek());

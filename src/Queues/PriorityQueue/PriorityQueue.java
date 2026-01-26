@@ -11,6 +11,7 @@ public class PriorityQueue<T> extends DinamicArrayQueue<T> {
         super();
     }
 
+    //O(logN) in the literature (HEAP), in the example it is O(n) because it does not implement the Heap.
     @SuppressWarnings("unchecked")
     public void enqueue(T element){
         Comparable<T> key = (Comparable<T>) element;

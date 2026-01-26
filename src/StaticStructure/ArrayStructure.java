@@ -17,16 +17,19 @@ public class ArrayStructure<T>{
         this(10);
     }
 
+    //O(n)
     public boolean isFull(){
         return size == elements.length;
     }
 
+    //O(1) or O(n) If you use the method increaseCapacity
     protected void add(T element) {
         increaseCapacity();
         elements[size] = element;
         this.size++;
     }
 
+    //O(n)
     protected void add(int index, T element) throws IndexOutOfBoundsException {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
@@ -39,6 +42,7 @@ public class ArrayStructure<T>{
         this.size++;
     }
 
+    //O(n)
     @SuppressWarnings("unchecked")
     private void increaseCapacity(){
         if (size == elements.length) {
@@ -50,10 +54,12 @@ public class ArrayStructure<T>{
         }
     }
 
+    //O(1)
     public boolean isEmpty(){
         return size == 0;
     }
 
+    //O(1)
     public int size(){
         return size;
     }

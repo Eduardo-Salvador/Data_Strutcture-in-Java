@@ -10,6 +10,7 @@ public class LinkedStack<T> extends NodeStructure<T> {
         head = null;
     }
 
+    //O(1)
     public void push(T value){
         if (isEmpty()){
             head = new Node<>(value);
@@ -22,16 +23,18 @@ public class LinkedStack<T> extends NodeStructure<T> {
         size++;
     }
 
+    //O(1)
     public T peek(){
         if (this.isEmpty()) {
-            throw new RuntimeException("Stack is empty");
+            return null;
         }
         return head.getData();
     }
 
+    //O(1)
     public T pop(){
         if(isEmpty()){
-            throw new RuntimeException("Underflow");
+            return null;
         }
         Node<T> deleted = head;
         head = head.getNext();
@@ -39,6 +42,7 @@ public class LinkedStack<T> extends NodeStructure<T> {
         return deleted.getData();
     }
 
+    //O(n)
     public int search(T element){
         int counter = 0;
         if (!isEmpty()){
@@ -54,11 +58,13 @@ public class LinkedStack<T> extends NodeStructure<T> {
         return -1;
     }
 
+    //O(n)
     public boolean contains(T element){
         return search(element) != -1;
     }
 
-    public void clear(){
+    //O(n), but is possible O(1)
+    public void clear() throws RuntimeException {
         if (isEmpty()){
             throw new RuntimeException("Empty Stack");
         }
@@ -69,7 +75,7 @@ public class LinkedStack<T> extends NodeStructure<T> {
             actual = next;
         }
         head = null;
-        size = 0;
+        this.size = 0;
     }
 
     @SuppressWarnings("unchecked")

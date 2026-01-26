@@ -1,8 +1,6 @@
 package Queues.LinkedQueue;
 import DinamicStructure.NodeStructure;
 
-import java.util.Arrays;
-
 public class LinkedQueue<T> extends NodeStructure<T> {
     private Node<T> head;
 
@@ -11,6 +9,7 @@ public class LinkedQueue<T> extends NodeStructure<T> {
         head = null;
     }
 
+    //O(n)
     public void enqueue(T element){
         if (isEmpty()){
             head = new Node<>(element);
@@ -26,9 +25,10 @@ public class LinkedQueue<T> extends NodeStructure<T> {
         size++;
     }
 
-    public T dequeue(){
+    //O(1)
+    public T dequeue()  {
         if(isEmpty()) {
-            throw new RuntimeException("Underflow");
+            return null;
         }
         Node<T> removed = head;
         head = head.getNext();
@@ -36,14 +36,16 @@ public class LinkedQueue<T> extends NodeStructure<T> {
         return removed.getData();
     }
 
+    //O(1)
     public T peek(){
         if(isEmpty()) {
-            throw new RuntimeException("Underflow");
+            return null;
         }
         return head.getData();
     }
 
-    public void list(){
+    //O(n)
+    public void list() throws RuntimeException {
         if(isEmpty()) {
             throw new RuntimeException("Underflow");
         }
@@ -57,6 +59,7 @@ public class LinkedQueue<T> extends NodeStructure<T> {
         System.out.print("]\n");
     }
 
+    //O(n), but is possible O(1)
     public void clear(){
         if (isEmpty()){
             return;
@@ -71,6 +74,7 @@ public class LinkedQueue<T> extends NodeStructure<T> {
         size = 0;
     }
 
+    //O(n)
     public boolean contains(T element){
         if (isEmpty()){
             return false;

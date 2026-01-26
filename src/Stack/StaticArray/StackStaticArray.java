@@ -2,7 +2,7 @@ package Stack.StaticArray;
 import StaticStructure.ArrayStructure;
 
 public class StackStaticArray<T> extends ArrayStructure<T> {
-    public StackStaticArray(int capacity){
+    public StackStaticArray(int capacity) throws IllegalArgumentException {
         super(capacity);
     }
 
@@ -10,47 +10,40 @@ public class StackStaticArray<T> extends ArrayStructure<T> {
         super();
     }
 
-    public void push(T element) {
+    //O(1)
+    public void push(T element) throws IndexOutOfBoundsException {
         if (isFull()){
-            throw new IndexOutOfBoundsException("Full Stack: " + size);
+            throw new IndexOutOfBoundsException("Full Stack: " + this.size);
         }
-        elements[size] = element;
+        this.elements[this.size] = element;
         this.size++;
     }
 
-    public void push(int index, T element) {
-        if (index < 0 || index > size || isFull()) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
-        }
-        for (int i = size; i > index; i--) {
-            elements[i] = elements[i - 1];
-        }
-        elements[index] = element;
-        this.size++;
-    }
-
+    //O(1)
     public T peek(){
         if (this.isEmpty()) {
             throw new RuntimeException("Stack is empty");
         }
-        return elements[size-1];
+        return this.elements[this.size-1];
     }
 
+    //O(1)
     public T pop(){
         if(isEmpty()){
-            throw new RuntimeException("Underflow");
+            return null;
         }
-        T popped = elements[size-1];
-        elements[size-1] = null;
+        T popped = this.elements[this.size-1];
+        this.elements[this.size-1] = null;
         this.size--;
         return popped;
     }
 
+    //O(n)
     public int search(T element){
         if (!isEmpty()){
-            for (int i = 0; i < elements.length; i++) {
-                if (elements[i].equals(element)){
-                    return (size-1) - i + 1;
+            for (int i = 0; i < this.elements.length; i++) {
+                if (this.elements[i].equals(element)){
+                    return (this.size-1) - i + 1;
                 }
             }
         }

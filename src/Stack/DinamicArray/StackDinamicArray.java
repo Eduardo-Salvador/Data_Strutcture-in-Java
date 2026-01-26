@@ -10,29 +10,33 @@ public class StackDinamicArray<T> extends ArrayStructure<T> {
         super();
     }
 
+    //O(1) or O(n) If you use the method increaseCapacity
     public void push(T value){
         super.add(value);
     }
 
-    public T peek(){
+    //O(1)
+    public T peek() throws RuntimeException{
         if (this.isEmpty()) {
             throw new RuntimeException("Stack is empty");
         }
-        return elements[size-1];
+        return this.elements[this.size-1];
     }
 
+    //O(1)
     public T pop(){
         if(isEmpty()){
-            throw new RuntimeException("Underflow");
+            return null;
         }
-        return elements[--size];
+        return this.elements[--this.size];
     }
 
+    //O(n)
     public int search(T element){
         if (!isEmpty()){
-            for (int i = 0; i < elements.length; i++) {
-                if (elements[i].equals(element)){
-                    return (size-1) - i + 1;
+            for (int i = 0; i < this.elements.length; i++) {
+                if (this.elements[i].equals(element)){
+                    return (this.size-1) - i + 1;
                 }
             }
         }

@@ -12,7 +12,8 @@ public class StaticArrayQueue<T> extends ArrayStructure<T> {
         super();
     }
 
-    public void enqueue(T element){
+    //O(1)
+    public void enqueue(T element) throws RuntimeException{
         if(isFull()){
             throw new RuntimeException("Queue is Full");
         }
@@ -20,9 +21,10 @@ public class StaticArrayQueue<T> extends ArrayStructure<T> {
         this.size++;
     }
 
+    //O(n)
     public T dequeue(){
         if(isEmpty()) {
-            throw new RuntimeException("Underflow");
+            return null;
         }
         T elementRemoved = elements[0];
         for (int i = 0; i < size - 1; i++) {
@@ -33,20 +35,23 @@ public class StaticArrayQueue<T> extends ArrayStructure<T> {
         return elementRemoved;
     }
 
+    //O(1)
     public T peek(){
         if(isEmpty()) {
-            throw new RuntimeException("Underflow");
+            return null;
         }
         return elements[0];
     }
 
-    public void list(){
+    //O(n)
+    public void list() throws RuntimeException {
         if(isEmpty()) {
             throw new RuntimeException("Underflow");
         }
         System.out.println(this);
     }
 
+    //O(n), but is possible O(1)
     public void clear(){
         if (isEmpty()){
             return;
@@ -55,6 +60,7 @@ public class StaticArrayQueue<T> extends ArrayStructure<T> {
         this.size = 0;
     }
 
+    //O(n)
     public boolean contains(T element){
         if (isEmpty()){
             return false;

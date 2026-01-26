@@ -7,10 +7,12 @@ public class NodeStructure<T> {
         size = 0;
     }
 
+    //O(1)
     public boolean isEmpty(){
         return size == 0;
     }
 
+    //O(1)
     public int size(){
         return size;
     }

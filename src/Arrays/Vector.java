@@ -11,46 +11,52 @@ public class Vector <T> extends ArrayStructure<T> {
         super();
     }
 
+    //O(1)
     public void add(T element) {
         super.add(element);
     }
 
+    //O(n)
     public void add(int index, T element) throws IndexOutOfBoundsException {
         super.add(index, element);
     }
 
+    //O(1)
     public T get(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= size()) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size());
         }
-        return elements[index];
+        return this.elements[index];
     }
 
+    //O(1)
     public T set(int index, T element) throws IndexOutOfBoundsException {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size());
         }
-        T oldElement = elements[index];
-        elements[index] = element;
+        T oldElement = this.elements[index];
+        this.elements[index] = element;
         return oldElement;
     }
 
+    //O(n)
     public T remove(int index) throws IndexOutOfBoundsException {
         if (isEmpty()){
             return null;
         }
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        if (index < 0 || index >= this.size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + this.size);
         }
-        T elementRemoved = elements[index];
+        T elementRemoved = this.elements[index];
         for(int i = index; i < size-1; i++){
-            elements[i] = elements[i + 1];
+            this.elements[i] = this.elements[i + 1];
         }
-        elements[size-1] = null;
-        size--;
+        this.elements[this.size-1] = null;
+        this.size--;
         return elementRemoved;
     }
 
+    //O(n)
     public boolean remove(T element){
         int index = indexOf(element);
         if (index != -1){
@@ -60,43 +66,49 @@ public class Vector <T> extends ArrayStructure<T> {
         return false;
     }
 
+    //O(n)
     public int indexOf(T element){
-        for (int i = 0; i < size; i++) {
-            if (element != null && element.equals(elements[i])) {
+        for (int i = 0; i < this.size; i++) {
+            if (element != null && element.equals(this.elements[i])) {
                 return i;
             }
         }
         return -1;
     }
 
+    //O(n)
     public boolean contains(T element){
         return indexOf(element) != -1;
     }
 
+    //O(n), but is possible O(1)
     public void clear(){
-        for (int i = 0; i < size; i++) {
-            elements[i] = null;
+        for (int i = 0; i < this.size; i++) {
+            this.elements[i] = null;
         }
-        size = 0;
+        this.size = 0;
     }
 
+    //O(1)
     public T getFirst(){
         if (!isEmpty()){
-            return elements[0];
+            return this.elements[0];
         }
         return null;
     }
 
+    //O(1)
     public T getLast(){
         if(!isEmpty()){
-            return elements[size-1];
+            return this.elements[this.size-1];
         }
         return null;
     }
 
+    //O(n)
     public int lastIndexOf(T element){
-        for (int i = size-1; i >= 0; i--) {
-            if (element != null && element.equals(elements[i])) {
+        for (int i = this.size-1; i >= 0; i--) {
+            if (element != null && element.equals(this.elements[i])) {
                 return i;
             }
         }
