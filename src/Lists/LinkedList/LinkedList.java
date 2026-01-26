@@ -1,6 +1,5 @@
 package Lists.LinkedList;
 import DinamicStructure.NodeStructure;
-
 import java.lang.reflect.Array;
 
 public class LinkedList<T> extends NodeStructure<T> {
@@ -11,7 +10,8 @@ public class LinkedList<T> extends NodeStructure<T> {
         head = null;
     }
 
-    public void add(int index, T element) {
+    //O(n)
+    public void add(int index, T element) throws IndexOutOfBoundsException {
         checkIndex(index);
         Node<T> newNode = new Node<>(element);
         if (index == 0) {
@@ -26,6 +26,7 @@ public class LinkedList<T> extends NodeStructure<T> {
         size++;
     }
 
+    //O(1)
     public void addFirst(T element){
         Node<T> newNode = new Node<>(element);
         if (isEmpty()){
@@ -37,6 +38,7 @@ public class LinkedList<T> extends NodeStructure<T> {
         size++;
     }
 
+    //O(n)
     public void addLast(T element){
         Node<T> newNode =  new Node<>(element);
         if (isEmpty()){
@@ -52,10 +54,12 @@ public class LinkedList<T> extends NodeStructure<T> {
         size++;
     }
 
-    public T get(int index) {
+    //O(n)
+    public T get(int index) throws IndexOutOfBoundsException {
         return getNode(index).getData();
     }
 
+    //O(1)
     public T getFirst(){
         if (!isEmpty()){
             return head.getData();
@@ -63,11 +67,13 @@ public class LinkedList<T> extends NodeStructure<T> {
         return null;
     }
 
-    public void set(int index, T element) {
+    //O(n)
+    public void set(int index, T element) throws IndexOutOfBoundsException {
         getNode(index).setData(element);
     }
 
-    public T remove(int index) {
+    //O(n)
+    public T remove(int index) throws IndexOutOfBoundsException {
         checkIndex(index);
         Node<T> removed;
         if (index == 0) {
@@ -82,6 +88,7 @@ public class LinkedList<T> extends NodeStructure<T> {
         return removed.getData();
     }
 
+    //O(n)
     public boolean remove(T element) {
         if (isEmpty()){
             return false;
@@ -103,10 +110,12 @@ public class LinkedList<T> extends NodeStructure<T> {
         return false;
     }
 
+    //O(n)
     public boolean contains(T element) {
         return indexOf(element) != -1;
     }
 
+    //O(n)
     public int indexOf(T element) {
         Node<T> current = head;
         int index = 0;
@@ -120,6 +129,7 @@ public class LinkedList<T> extends NodeStructure<T> {
         return -1;
     }
 
+    //O(n), but is possible O(1)
     public void clear() {
         for (Node<T> actual = head; actual != null;){
             Node<T> next =  actual.getNext();
@@ -167,7 +177,8 @@ public class LinkedList<T> extends NodeStructure<T> {
         return sb.toString();
     }
 
-    private Node<T> getNode(int index) {
+    //O(n)
+    private Node<T> getNode(int index) throws IndexOutOfBoundsException{
         checkIndex(index);
         Node<T> current = head;
         for (int i = 0; i < index; i++) {
@@ -176,7 +187,8 @@ public class LinkedList<T> extends NodeStructure<T> {
         return current;
     }
 
-    private void checkIndex(int index) {
+    //O(1)
+    private void checkIndex(int index) throws IndexOutOfBoundsException{
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException(
                     "Index: " + index + ", Size: " + size

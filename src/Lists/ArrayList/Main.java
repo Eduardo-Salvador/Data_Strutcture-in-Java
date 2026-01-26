@@ -34,5 +34,15 @@ public class Main {
         System.out.println(arrayList);
         System.out.println("is Empty? " + arrayList.isEmpty());
         arrayList.resize(40);
+        arrayList.add(10D);
+        System.out.println(arrayList.removeFirst());
+        System.out.println(arrayList);
+        arrayList.add(11D);
+        arrayList.add(12D);
+        arrayList.add(13D);
+        System.out.println(arrayList);
+        System.out.println(arrayList.removeLast());
+        System.out.println(arrayList);
+
     }
 }

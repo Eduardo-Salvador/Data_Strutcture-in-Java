@@ -1,5 +1,6 @@
 package Lists.ArrayList;
 import StaticStructure.ArrayStructure;
+import java.util.NoSuchElementException;
 
 public class ArrayList<T> extends ArrayStructure<T> {
 
@@ -11,34 +12,40 @@ public class ArrayList<T> extends ArrayStructure<T> {
         super();
     }
 
-    public T get(int index) {
+    //O(1)
+    public T get(int index) throws IndexOutOfBoundsException {
         checkIndex(index);
-        return elements[index];
+        return this.elements[index];
     }
 
-    public void set(int index, T element) {
+    //O(1)
+    public void set(int index, T element) throws IndexOutOfBoundsException {
         checkIndex(index);
-        elements[index] = element;
+        this.elements[index] = element;
     }
 
+    //O(1) or O(n) If you use the method increaseCapacity
     public void add(T element) {
         super.add(element);
     }
 
-    public void add(int index, T element){
+    //O(n)
+    public void add(int index, T element) throws IndexOutOfBoundsException {
         super.add(index, element);
     }
 
-    public T remove(int index) {
+    //O(n)
+    public T remove(int index) throws IndexOutOfBoundsException {
         checkIndex(index);
-        T removed = elements[index];
-        for (int i = index; i < size - 1; i++) {
-            elements[i] = elements[i + 1];
+        T removed = this.elements[index];
+        for (int i = index; i < this.size - 1; i++) {
+            this.elements[i] = this.elements[i + 1];
         }
-        elements[--size] = null;
+        this.elements[--this.size] = null;
         return removed;
     }
 
+    //O(n)
     public boolean remove(T element) {
         int index = indexOf(element);
         if (index == -1) {
@@ -48,42 +55,70 @@ public class ArrayList<T> extends ArrayStructure<T> {
         return true;
     }
 
+    //O(n)
+    public T removeFirst() throws NoSuchElementException{
+        if (size == 0) {
+            throw new NoSuchElementException();
+        }
+        T removed = this.elements[0];
+        for (int i = 0; i < this.size - 1; i++) {
+            this.elements[i] = this.elements[i + 1];
+        }
+        size--;
+        return removed;
+    }
+
+    //O(n)
+    public T removeLast() throws NoSuchElementException{
+        if (size == 0) {
+            throw new NoSuchElementException();
+        }
+        T removed = this.elements[size - 1];
+        elements[size - 1] = null;
+        size--;
+        return removed;
+    }
+
+    //O(n)
     public boolean contains(T element) {
         return indexOf(element) != -1;
     }
 
+    //O(n)
     public int indexOf(T element) {
         if (element == null) {
-            for (int i = 0; i < size; i++) {
-                if (elements[i] == null) return i;
+            for (int i = 0; i < this.size; i++) {
+                if (this.elements[i] == null) return i;
             }
         } else {
-            for (int i = 0; i < size; i++) {
-                if (element.equals(elements[i])) return i;
+            for (int i = 0; i < this.size; i++) {
+                if (element.equals(this.elements[i])) return i;
             }
         }
         return -1;
     }
 
+    //O(n)
     public void clear() {
-        for (int i = 0; i < size; i++) {
-            elements[i] = null;
+        for (int i = 0; i < this.size; i++) {
+            this.elements[i] = null;
         }
-        size = 0;
+        this.size = 0;
     }
 
     @SuppressWarnings("unchecked")
     public void resize(int newCapacity) {
         T[] newData = (T[]) new Object[newCapacity];
         int i = 0;
-        while (i < size) {
-            newData[i] = elements[i];
+        while (i < this.size) {
+            newData[i] = this.elements[i];
             i++;
         }
-        elements = newData;
+        this.elements = newData;
     }
 
-    private void checkIndex(int index) {
+    //O(1)
+    private void checkIndex(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException(
                     "Index: " + index + ", Size: " + size

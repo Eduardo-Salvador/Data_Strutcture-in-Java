@@ -12,70 +12,74 @@ public class DoublyLinkedList<T> {
         size = 0;
     }
 
+    //O(1)
     public boolean isEmpty() {
         return head == null;
     }
 
+    //O(1)
     public int size() {
         return size - 1;
     }
 
+    //O(1)
     public boolean add(T element){
         Node<T> newNode = new Node<>(element);
         if (isEmpty()){
             head = newNode;
+            last = newNode;
             size++;
             return true;
         }
-        Node<T> current = head;
-        while (current.getNext() != null){
-            current = current.getNext();
-        }
-        current.setNext(newNode);
-        newNode.setPrevious(current);
+        last.setNext(newNode);
+        newNode.setPrevious(last);
         last = newNode;
         size++;
         return true;
     }
 
-    public void add(int index, T element){
+    //O(n)
+    public void add(int index, T element) throws IndexOutOfBoundsException{
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("Index OutOfBound");
         }
-
-        Node<T> newNode = new Node<>(element);
-
         if (index == 0) {
-            if (isEmpty()) {
-                head = newNode;
-                size++;
-                return;
-            }
             addFirst(element);
-            size++;
+            return;
+        }
+        if (index == size){
+            addLast(element);
             return;
         }
 
-        Node<T> current = head;
-        if (index == size){
-            last = newNode;
+        Node<T> newNode = new Node<>(element);
+        Node<T> current;
+        if (index <= size / 2) {
+            current = head;
+            for (int i = 0; i < index; i++) {
+                current = current.getNext();
+            }
+        } else {
+            current = last;
+            for (int i = size - 1; i > index; i--) {
+                current = current.getPrevious();
+            }
         }
-        for (int i = 0; i < index; i++) {
-            current = current.getNext();
-        }
-        newNode.setNext(current.getNext());
-        newNode.setPrevious(current);
-        if (current.getNext() != null){
-            current.getNext().setPrevious(newNode);
-        }
-        current.setNext(newNode);
+
+        newNode.setNext(current);
+        newNode.setPrevious(current.getPrevious());
+        current.getPrevious().setNext(newNode);
+        current.setPrevious(newNode);
+
         size++;
     }
 
+    //O(1)
     public void addFirst(T element){
         Node<T> newNode = new Node<>(element);
         if (isEmpty()){
             head = newNode;
+            last = newNode;
             size++;
         }
         head.setPrevious(newNode);
@@ -84,26 +88,15 @@ public class DoublyLinkedList<T> {
         size++;
     }
 
+    //O(1)
     public void addLast(T element){
-        Node<T> newNode = new Node<>(element);
-        last = newNode;
-        if (isEmpty()){
-            head = newNode;
-            size++;
-            return;
-        }
-        Node<T> current = head;
-        while (current.getNext() != null){
-            current = current.getNext();
-        }
-        current.setNext(newNode);
-        newNode.setPrevious(current);
-        size++;
+        add(element);
     }
 
+    //O(1)
     public T remove(){
         if (isEmpty()){
-            throw new NullPointerException("Linked list is empty");
+            return null;
         }
         Node<T> removed = head;
         head = head.getNext();
@@ -112,37 +105,40 @@ public class DoublyLinkedList<T> {
         return removed.getData();
     }
 
-    public T remove(int index){
-        if (index < 0 || index > size) {
+    //O(n)
+    public T remove(int index) throws IndexOutOfBoundsException{
+        Node<T> removed;
+        if (index < 0 || index > (size - 1)) {
             throw new IndexOutOfBoundsException("Index OutOfBound");
         }
-
-        Node<T> removed;
-
         if (index == 0) {
-            removed = head;
-            head = null;
-            size--;
-            return removed.getData();
+            return removeFirst();
         }
-        if (index == size){
-            last = last.getPrevious();
+        if (index == (size - 1)){
+            return removeLast();
         }
 
-        Node<T> current = head;
-        for (int i = 0; i < index; i++) {
-            current = current.getNext();
+        Node<T> current;
+        if (index <= size / 2) {
+            current = head;
+            for (int i = 0; i < index; i++) {
+                current = current.getNext();
+            }
+        } else {
+            current = last;
+            for (int i = size - 1; i > index; i--) {
+                current = current.getPrevious();
+            }
         }
-
         current.getNext().setPrevious(current.getPrevious());
         current.getPrevious().setNext(current.getNext());
         removed = current;
-        current = null;
         size--;
         return removed.getData();
     }
 
-    public boolean remove(T element){
+    //O(n)
+    public boolean remove(T element) throws NullPointerException{
         if (isEmpty()){
             throw new NullPointerException("Linked list is empty");
         }
@@ -152,7 +148,6 @@ public class DoublyLinkedList<T> {
             if (current.getData().equals(element)){
                 current.getNext().setPrevious(current.getPrevious());
                 current.getPrevious().setNext(current.getNext());
-                current = null;
                 if (i == size){
                     last = last.getPrevious();
                     last.setNext(null);
@@ -163,23 +158,25 @@ public class DoublyLinkedList<T> {
             current = current.getNext();
             i++;
         }
-        current = null;
         last = last.getPrevious();
         last.setNext(null);
         size--;
         return true;
     }
 
+    //O(1)
     public T removeFirst(){
         if (isEmpty()){
             return null;
         }
         Node<T> removed = head;
         head = head.getNext();
+        head.setPrevious(null);
         size--;
         return removed.getData();
     }
 
+    //O(1)
     public T removeLast(){
         if (isEmpty()){
             return null;
@@ -191,7 +188,8 @@ public class DoublyLinkedList<T> {
         return removed.getData();
     }
 
-    public boolean removeFirstOccurrence(T element){
+    //O(n)
+    public boolean removeFirstOccurrence(T element) throws NullPointerException{
         if (isEmpty()){
             throw new NullPointerException("Linked list is empty");
         }
@@ -200,18 +198,17 @@ public class DoublyLinkedList<T> {
             if (current.getData().equals(element)){
                 current.getNext().setPrevious(current.getPrevious());
                 current.getPrevious().setNext(current.getNext());
-                current = null;
                 size--;
                 return true;
             }
             current = current.getNext();
         }
-        current = null;
         size--;
         return true;
     }
 
-    public boolean removeLastOccurrence(T element){
+    //O(n)
+    public boolean removeLastOccurrence(T element) throws NullPointerException{
         if (isEmpty()){
             throw new NullPointerException("Linked list is empty");
         }
@@ -226,20 +223,19 @@ public class DoublyLinkedList<T> {
             if (current.getData().equals(element)){
                 current.getNext().setPrevious(current.getPrevious());
                 current.getPrevious().setNext(current.getNext());
-                current = null;
                 size--;
                 return true;
             }
             current = current.getPrevious();
         }
-        current = null;
         size--;
         return true;
     }
 
+    //O(n)
     public T get(int index){
         if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException("Index OutOfBound");
+            return null;
         }
         Node<T> current = head;
         for (int i = 0; i < index; i++) {
@@ -248,20 +244,23 @@ public class DoublyLinkedList<T> {
         return current.getData();
     }
 
-    public T getFirst(){
+    //O(1)
+    public T getFirst() throws NullPointerException{
         if (isEmpty()) {
             throw new NullPointerException("Empty List");
         }
         return head.getData();
     }
 
-    public T getLast(){
+    //O(1)
+    public T getLast() throws NullPointerException{
         if (isEmpty()) {
             throw new NullPointerException("Empty List");
         }
         return last.getData();
     }
 
+    //O(n)
     public boolean contains(T element){
         if (isEmpty()){
             return false;
@@ -276,6 +275,7 @@ public class DoublyLinkedList<T> {
         return false;
     }
 
+    //O(n)
     public int indexOf(T element){
         if (isEmpty()){
             return -1;
@@ -292,6 +292,7 @@ public class DoublyLinkedList<T> {
         return -1;
     }
 
+    //O(n)
     public int lastIndexOf(T element){
         if (isEmpty()){
             return -1;
