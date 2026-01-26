@@ -62,5 +62,9 @@ public class Main {
 
         String[] arrayString = doublyLinkedList.toArray(String.class);
         System.out.println("Array: " + Arrays.toString(arrayString));
+
+        doublyLinkedList.clear();
+        System.out.println(doublyLinkedList.size());
+        System.out.println(doublyLinkedList);
     }
 }

@@ -17,13 +17,13 @@ public class LinkedList<T> extends NodeStructure<T> {
         if (index == 0) {
             newNode.setNext(head);
             head = newNode;
-            size++;
+            this.size++;
             return;
         }
         Node<T> previous = getNode(index - 1);
         newNode.setNext(previous.getNext());
         previous.setNext(newNode);
-        size++;
+        this.size++;
     }
 
     //O(1)
@@ -35,7 +35,7 @@ public class LinkedList<T> extends NodeStructure<T> {
         }
         newNode.setNext(head);
         head = newNode;
-        size++;
+        this.size++;
     }
 
     //O(n)
@@ -43,7 +43,7 @@ public class LinkedList<T> extends NodeStructure<T> {
         Node<T> newNode =  new Node<>(element);
         if (isEmpty()){
             head = newNode;
-            size++;
+            this.size++;
             return;
         }
         Node<T> current = head;
@@ -51,7 +51,7 @@ public class LinkedList<T> extends NodeStructure<T> {
             current = current.getNext();
         }
         current.setNext(newNode);
-        size++;
+        this.size++;
     }
 
     //O(n)
@@ -84,7 +84,7 @@ public class LinkedList<T> extends NodeStructure<T> {
             removed = previous.getNext();
             previous.setNext(removed.getNext());
         }
-        size--;
+        this.size--;
         return removed.getData();
     }
 
@@ -95,14 +95,14 @@ public class LinkedList<T> extends NodeStructure<T> {
         }
         if (head.getData().equals(element)) {
             head = head.getNext();
-            size--;
+            this.size--;
             return true;
         }
         Node<T> current = head;
         while (current.getNext() != null) {
             if (current.getNext().getData().equals(element)) {
                 current.setNext(current.getNext().getNext());
-                size--;
+                this.size--;
                 return true;
             }
             current = current.getNext();
@@ -129,16 +129,10 @@ public class LinkedList<T> extends NodeStructure<T> {
         return -1;
     }
 
-    //O(n), but is possible O(1)
+    //O(1)
     public void clear() {
-        for (Node<T> actual = head; actual != null;){
-            Node<T> next =  actual.getNext();
-            actual.setData(null);
-            actual.setNext(null);
-            actual = next;
-        }
         head = null;
-        size = 0;
+        this.size = 0;
     }
 
     @SuppressWarnings("unchecked")
@@ -146,7 +140,7 @@ public class LinkedList<T> extends NodeStructure<T> {
         if (isEmpty()){
             return null;
         }
-        T[] array = (T[]) Array.newInstance(clazz, size);
+        T[] array = (T[]) Array.newInstance(clazz, this.size);
         Node<T> current = head;
         int i = 0;
         while (current != null){
@@ -189,9 +183,9 @@ public class LinkedList<T> extends NodeStructure<T> {
 
     //O(1)
     private void checkIndex(int index) throws IndexOutOfBoundsException{
-        if (index < 0 || index > size) {
+        if (index < 0 || index > this.size) {
             throw new IndexOutOfBoundsException(
-                    "Index: " + index + ", Size: " + size
+                    "Index: " + index + ", Size: " + this.size
             );
         }
     }

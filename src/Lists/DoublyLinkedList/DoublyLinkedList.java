@@ -1,10 +1,10 @@
 package Lists.DoublyLinkedList;
+import DinamicStructure.NodeStructure;
 import java.lang.reflect.Array;
 
-public class DoublyLinkedList<T> {
+public class DoublyLinkedList<T> extends NodeStructure<T> {
     private Node<T> head;
     private Node<T> last;
-    private int size;
 
     public DoublyLinkedList(){
         head = null;
@@ -19,7 +19,10 @@ public class DoublyLinkedList<T> {
 
     //O(1)
     public int size() {
-        return size - 1;
+        if (this.size == 0) {
+            return 0;
+        }
+        return this.size - 1;
     }
 
     //O(1)
@@ -28,13 +31,13 @@ public class DoublyLinkedList<T> {
         if (isEmpty()){
             head = newNode;
             last = newNode;
-            size++;
+            this.size++;
             return true;
         }
         last.setNext(newNode);
         newNode.setPrevious(last);
         last = newNode;
-        size++;
+        this.size++;
         return true;
     }
 
@@ -47,21 +50,21 @@ public class DoublyLinkedList<T> {
             addFirst(element);
             return;
         }
-        if (index == size){
+        if (index == this.size){
             addLast(element);
             return;
         }
 
         Node<T> newNode = new Node<>(element);
         Node<T> current;
-        if (index <= size / 2) {
+        if (index <= this.size / 2) {
             current = head;
             for (int i = 0; i < index; i++) {
                 current = current.getNext();
             }
         } else {
             current = last;
-            for (int i = size - 1; i > index; i--) {
+            for (int i = this.size - 1; i > index; i--) {
                 current = current.getPrevious();
             }
         }
@@ -71,7 +74,7 @@ public class DoublyLinkedList<T> {
         current.getPrevious().setNext(newNode);
         current.setPrevious(newNode);
 
-        size++;
+        this.size++;
     }
 
     //O(1)
@@ -80,12 +83,12 @@ public class DoublyLinkedList<T> {
         if (isEmpty()){
             head = newNode;
             last = newNode;
-            size++;
+            this.size++;
         }
         head.setPrevious(newNode);
         newNode.setNext(head);
         head = newNode;
-        size++;
+        this.size++;
     }
 
     //O(1)
@@ -101,7 +104,7 @@ public class DoublyLinkedList<T> {
         Node<T> removed = head;
         head = head.getNext();
         head.setPrevious(null);
-        size--;
+        this.size--;
         return removed.getData();
     }
 
@@ -114,26 +117,26 @@ public class DoublyLinkedList<T> {
         if (index == 0) {
             return removeFirst();
         }
-        if (index == (size - 1)){
+        if (index == (this.size - 1)){
             return removeLast();
         }
 
         Node<T> current;
-        if (index <= size / 2) {
+        if (index <= this.size / 2) {
             current = head;
             for (int i = 0; i < index; i++) {
                 current = current.getNext();
             }
         } else {
             current = last;
-            for (int i = size - 1; i > index; i--) {
+            for (int i = this.size - 1; i > index; i--) {
                 current = current.getPrevious();
             }
         }
         current.getNext().setPrevious(current.getPrevious());
         current.getPrevious().setNext(current.getNext());
         removed = current;
-        size--;
+        this.size--;
         return removed.getData();
     }
 
@@ -148,11 +151,11 @@ public class DoublyLinkedList<T> {
             if (current.getData().equals(element)){
                 current.getNext().setPrevious(current.getPrevious());
                 current.getPrevious().setNext(current.getNext());
-                if (i == size){
+                if (i == this.size){
                     last = last.getPrevious();
                     last.setNext(null);
                 }
-                size--;
+                this.size--;
                 return true;
             }
             current = current.getNext();
@@ -160,7 +163,7 @@ public class DoublyLinkedList<T> {
         }
         last = last.getPrevious();
         last.setNext(null);
-        size--;
+        this.size--;
         return true;
     }
 
@@ -172,7 +175,7 @@ public class DoublyLinkedList<T> {
         Node<T> removed = head;
         head = head.getNext();
         head.setPrevious(null);
-        size--;
+        this.size--;
         return removed.getData();
     }
 
@@ -184,7 +187,7 @@ public class DoublyLinkedList<T> {
         Node<T> removed = last;
         last = last.getPrevious();
         last.setNext(null);
-        size--;
+        this.size--;
         return removed.getData();
     }
 
@@ -198,12 +201,12 @@ public class DoublyLinkedList<T> {
             if (current.getData().equals(element)){
                 current.getNext().setPrevious(current.getPrevious());
                 current.getPrevious().setNext(current.getNext());
-                size--;
+                this.size--;
                 return true;
             }
             current = current.getNext();
         }
-        size--;
+        this.size--;
         return true;
     }
 
@@ -215,7 +218,7 @@ public class DoublyLinkedList<T> {
         if (last.getData().equals(element)){
             last = last.getPrevious();
             last.setNext(null);
-            size--;
+            this.size--;
             return true;
         }
         Node<T> current = last;
@@ -223,18 +226,25 @@ public class DoublyLinkedList<T> {
             if (current.getData().equals(element)){
                 current.getNext().setPrevious(current.getPrevious());
                 current.getPrevious().setNext(current.getNext());
-                size--;
+                this.size--;
                 return true;
             }
             current = current.getPrevious();
         }
-        size--;
+        this.size--;
         return true;
+    }
+
+    //O(1)
+    public void clear(){
+        head = null;
+        last = null;
+        this.size = 0;
     }
 
     //O(n)
     public T get(int index){
-        if (index < 0 || index > size) {
+        if (index < 0 || index > this.size) {
             return null;
         }
         Node<T> current = head;
@@ -298,7 +308,7 @@ public class DoublyLinkedList<T> {
             return -1;
         }
 
-        int index = size - 1;
+        int index = this.size - 1;
         Node<T> current = last;
 
         while (current != null){
@@ -317,7 +327,7 @@ public class DoublyLinkedList<T> {
         if (isEmpty()){
             return null;
         }
-        T[] array = (T[]) Array.newInstance(clazz, size);
+        T[] array = (T[]) Array.newInstance(clazz, this.size);
         Node<T> current = head;
         int i = 0;
         while (current != null){

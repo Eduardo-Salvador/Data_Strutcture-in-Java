@@ -57,25 +57,25 @@ public class ArrayList<T> extends ArrayStructure<T> {
 
     //O(n)
     public T removeFirst() throws NoSuchElementException{
-        if (size == 0) {
+        if (this.size == 0) {
             throw new NoSuchElementException();
         }
         T removed = this.elements[0];
         for (int i = 0; i < this.size - 1; i++) {
             this.elements[i] = this.elements[i + 1];
         }
-        size--;
+        this.size--;
         return removed;
     }
 
     //O(n)
     public T removeLast() throws NoSuchElementException{
-        if (size == 0) {
+        if (this.size == 0) {
             throw new NoSuchElementException();
         }
-        T removed = this.elements[size - 1];
-        elements[size - 1] = null;
-        size--;
+        T removed = this.elements[this.size - 1];
+        this.elements[this.size - 1] = null;
+        this.size--;
         return removed;
     }
 
@@ -119,9 +119,9 @@ public class ArrayList<T> extends ArrayStructure<T> {
 
     //O(1)
     private void checkIndex(int index) throws IndexOutOfBoundsException {
-        if (index < 0 || index >= size) {
+        if (index < 0 || index >= this.size) {
             throw new IndexOutOfBoundsException(
-                    "Index: " + index + ", Size: " + size
+                    "Index: " + index + ", Size: " + this.size
             );
         }
     }
