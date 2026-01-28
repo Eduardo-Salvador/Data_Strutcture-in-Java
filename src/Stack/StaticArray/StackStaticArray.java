@@ -20,7 +20,7 @@ public class StackStaticArray<T> extends ArrayStructure<T> {
     }
 
     //O(1)
-    public T peek(){
+    public T peek() throws RuntimeException{
         if (this.isEmpty()) {
             throw new RuntimeException("Stack is empty");
         }
