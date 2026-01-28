@@ -3,38 +3,38 @@ import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) {
-        Max_O1<Integer> minO1 = new Max_O1<>(new Comparator<Integer>() {
+        Max_O1<Integer> max01 = new Max_O1<>(new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
                 return o1.compareTo(o2);
             }
         });
 
-        minO1.push(10);
-        minO1.push(34);
-        minO1.push(32);
-        minO1.push(12);
-        minO1.push(56);
-        minO1.push(3);
-        minO1.push(321);
-        minO1.push(49);
-        minO1.push(23);
+        max01.push(10);
+        max01.push(34);
+        max01.push(32);
+        max01.push(12);
+        max01.push(56);
+        max01.push(3);
+        max01.push(321);
+        max01.push(49);
+        max01.push(23);
 
-        System.out.println(minO1);
+        System.out.println(max01);
 
-        System.out.println("Max: " + minO1.getMax());
+        System.out.println("Max: " + max01.getMax());
 
-        System.out.println(minO1.pop());
-        System.out.println(minO1.pop());
-        System.out.println(minO1.pop());
-        System.out.println(minO1.pop());
+        System.out.println(max01.pop());
+        System.out.println(max01.pop());
+        System.out.println(max01.pop());
+        System.out.println(max01.pop());
 
-        System.out.println(minO1);
-        System.out.println("Max: " + minO1.getMax());
+        System.out.println(max01);
+        System.out.println("Max: " + max01.getMax());
 
-        System.out.println(minO1.pop());
+        System.out.println(max01.pop());
 
-        System.out.println(minO1);
-        System.out.println("Max: " + minO1.getMax());
+        System.out.println(max01);
+        System.out.println("Max: " + max01.getMax());
     }
 }
