@@ -42,4 +42,9 @@ public class StackDinamicArray<T> extends ArrayStructure<T> {
         }
         return -1;
     }
+
+    //O(1)
+    public void clear(){
+        this.size = 0;
+    }
 }
