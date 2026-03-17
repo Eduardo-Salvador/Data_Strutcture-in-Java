@@ -1,4 +1,4 @@
-package Deque.CircularArrayDeque;
+package Deques.CircularArrayDeque;
 
 public class Main {
     public static void main(String[] args) {

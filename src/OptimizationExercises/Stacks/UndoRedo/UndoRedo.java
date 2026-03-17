@@ -1,5 +1,5 @@
 package OptimizationExercises.Stacks.UndoRedo;
-import Stack.DinamicArray.StackDinamicArray;
+import Stacks.DinamicArray.StackDinamicArray;
 import java.util.NoSuchElementException;
 
 public class UndoRedo<T> extends StackDinamicArray<T> {

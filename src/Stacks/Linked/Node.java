@@ -1,4 +1,4 @@
-package Stack.Linked;
+package Stacks.Linked;
 
 public class Node<T> {
     private T data;

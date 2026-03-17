@@ -71,7 +71,7 @@ LIFO → Last in, First Out (O ultimo a entrar é o primeiro a sair).
 ## Exemplo de Uso
 ```java
 // Pilha com Array Dinâmico
-Stack<String> pilha = new Stack<>();
+Stacks<String> pilha = new Stacks<>();
 pilha.push("A");        // O(1) - adiciona no topo
 pilha.push("B");        // O(1)
 String topo = pilha.peek();  // O(1) - consulta sem remover
@@ -90,7 +90,7 @@ boolean vazia = pilha.isEmpty();  // O(1)
 | Array estático | Array | ❌ | Médio | Didático | ✔ |
 | Array dinâmico | Array | ✔ | Médio | Geral | ✔ |
 | Simples Encadeada | Nós | ✔ | Alto | Acadêmico | ✔ |
-| Call Stack | JVM | ✔ | JVM | Conceitual | N/A |
+| Call Stacks | JVM | ✔ | JVM | Conceitual | N/A |
 
 **Diferenças entre implementações:**
 - **Array Fixo**: Usa `ArrayStructure`, requer variável `topo` (ou `size`), sem redimensionamento
@@ -101,15 +101,15 @@ boolean vazia = pilha.isEmpty();  // O(1)
 
 ---
 
-### Call Stack (Pilha de Chamadas)
+### Call Stacks (Pilha de Chamadas)
 
-A **Call Stack** é uma estrutura de dados fundamental que a JVM usa para gerenciar a execução de métodos em um programa Java.
+A **Call Stacks** é uma estrutura de dados fundamental que a JVM usa para gerenciar a execução de métodos em um programa Java.
 
 **Características:**
-- Cada thread tem sua própria Call Stack privada
+- Cada thread tem sua própria Call Stacks privada
 - Criada simultaneamente com a thread
 
-**Estrutura de um Stack Frame:**
+**Estrutura de um Stacks Frame:**
 
 Quando um método é invocado, a JVM cria um **stack frame** contendo:
 - **Variáveis locais** do método
@@ -118,7 +118,7 @@ Quando um método é invocado, a JVM cria um **stack frame** contendo:
 - **Referência** ao método chamador
 - **Operand stack** (pilha de operandos para cálculos intermediários)
 
-Este frame é empilhado no topo da Call Stack. Quando o método termina, o frame é desempilhado e o controle retorna ao método chamador.
+Este frame é empilhado no topo da Call Stacks. Quando o método termina, o frame é desempilhado e o controle retorna ao método chamador.
 
 **Exemplo prático:**
 ```java
@@ -142,11 +142,11 @@ public class ExemploCallStack {
 }
 ```
 
-Quando você vê o **stack trace** de uma exceção, está literalmente vendo o conteúdo da Call Stack no momento do erro, de baixo para cima.
+Quando você vê o **stack trace** de uma exceção, está literalmente vendo o conteúdo da Call Stacks no momento do erro, de baixo para cima.
 
 #### StackOverflowError
 
-Se houver muitas chamadas recursivas ou uma recursão infinita, a Call Stack atinge seu limite de tamanho e a JVM lança um `StackOverflowError`.
+Se houver muitas chamadas recursivas ou uma recursão infinita, a Call Stacks atinge seu limite de tamanho e a JVM lança um `StackOverflowError`.
 
 **Configuração:** O tamanho da stack pode ser ajustado com a flag `-Xss` na JVM.
 ```java

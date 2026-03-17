@@ -1,4 +1,4 @@
-package Deque.LinkedListDeque;
+package Deques.LinkedListDeque;
 import DinamicStructure.NodeStructure;
 import java.util.NoSuchElementException;
 

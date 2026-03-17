@@ -1,4 +1,4 @@
-package Deque.CircularArrayDeque;
+package Deques.CircularArrayDeque;
 import StaticStructure.ArrayStructure;
 import java.util.NoSuchElementException;
 

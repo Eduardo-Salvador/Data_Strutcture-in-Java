@@ -1,4 +1,4 @@
-package Stack.Linked;
+package Stacks.Linked;
 import DinamicStructure.NodeStructure;
 import java.lang.reflect.Array;
 

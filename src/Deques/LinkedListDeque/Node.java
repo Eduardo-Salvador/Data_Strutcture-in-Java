@@ -1,4 +1,4 @@
-package Deque.LinkedListDeque;
+package Deques.LinkedListDeque;
 
 public class Node<T> {
     private T data;

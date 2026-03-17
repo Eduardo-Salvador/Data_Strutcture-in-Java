@@ -1,5 +1,5 @@
 package OptimizationExercises.Stacks.Min_01;
-import Stack.DinamicArray.StackDinamicArray;
+import Stacks.DinamicArray.StackDinamicArray;
 import java.util.Comparator;
 
 public class Min_O1 <T> extends StackDinamicArray<T> {

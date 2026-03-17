@@ -1,5 +1,5 @@
 package OptimizationExercises.Deques.CheckPalindrome;
-import Deque.LinkedListDeque.DoublyLinkedListDeque;
+import Deques.LinkedListDeque.DoublyLinkedListDeque;
 
 public class CheckPalindrome extends DoublyLinkedListDeque<Character> {
 

@@ -1,5 +1,5 @@
 package OptimizationExercises.Stacks.Max_01;
-import Stack.DinamicArray.StackDinamicArray;
+import Stacks.DinamicArray.StackDinamicArray;
 import java.util.Comparator;
 
 public class Max_O1<T> extends StackDinamicArray<T> {

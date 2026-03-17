@@ -1,4 +1,4 @@
-package Deque.LinkedListDeque;
+package Deques.LinkedListDeque;
 
 public class Main {
     public static void main(String[] args) {

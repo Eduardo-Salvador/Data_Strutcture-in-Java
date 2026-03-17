@@ -1,8 +1,10 @@
-package Stack.DinamicArray;
+package Stacks.Linked;
+
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        StackDinamicArray<String> stack = new StackDinamicArray<>(5);
+        LinkedStack<String> stack = new LinkedStack<>();
         System.out.println("Is empty? " + stack.isEmpty());
         stack.push("Pagina 1");
         stack.push("Pagina 2");
@@ -20,5 +22,7 @@ public class Main {
         stack.push("Pagina 8");
         System.out.println(stack);
         System.out.println(stack.size());
+        String[] array = stack.toArray(String.class);
+        System.out.println("Array: " + Arrays.toString(array));
     }
 }

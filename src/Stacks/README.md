@@ -6,7 +6,7 @@
 
 ---
 
-Explanation of the Stack Data Structure, its main operations and complexities.
+Explanation of the Stacks Data Structure, its main operations and complexities.
 
 ---
 
@@ -71,8 +71,8 @@ LIFO → Last In, First Out.
 
 ## Example of Use
 ```java
-// Stack with Dynamic Array
-Stack<String> stack = new Stack<>();
+// Stacks with Dynamic Array
+Stacks<String> stack = new Stacks<>();
 
 stack.push("A"); // O(1) - adds to the top
 stack.push("B"); // O(1)
@@ -93,26 +93,26 @@ boolean empty = stack.isEmpty(); // O(1)
 | Static Array | Array | ❌ | Medium | Didactic | ✔ |
 | Dynamic Array | Array | ✔ | Medium | General | ✔ |
 | Singly Linked | Nodes | ✔ | High | Academic | ✔ |
-| Call Stack | JVM | ✔ | JVM | Conceptual | N/A |
+| Call Stacks | JVM | ✔ | JVM | Conceptual | N/A |
 
 **Differences between implementations:**
 - **Fixed Array**: Uses `ArrayStructure`, requires a `top` (or `size`) variable, no resizing
 - **Dynamic Array**: Uses `ArrayStructure` + `increaseCapacity()` for automatic growth
-- **Linked Stack (singly linked list)**: Uses `NodeStructure`, more flexible but complex (pointers)
+- **Linked Stacks (singly linked list)**: Uses `NodeStructure`, more flexible but complex (pointers)
 > ***The difference between implementations is based on the Big O's of each operation. For example, accessing a linked list has greater complexity than accessing a static or dynamic array.***
 
 ---
 
-### Call Stack
+### Call Stacks
 
-A Call Stack is a fundamental data structure that the JVM uses to manage the execution of methods in a Java program.
+A Call Stacks is a fundamental data structure that the JVM uses to manage the execution of methods in a Java program.
 
 Characteristics:
 
-- Each thread has its own private Call Stack
+- Each thread has its own private Call Stacks
 - Created simultaneously with the thread
 
-Structure of a Stack Frame:
+Structure of a Stacks Frame:
 
 When a method is invoked, the JVM creates a stack frame containing:
 - Local variables of the method
@@ -121,7 +121,7 @@ When a method is invoked, the JVM creates a stack frame containing:
 - Reference to the calling method
 - Operand stack (stack of operands for intermediate calculations)
 
-This frame is pushed on top of the Call Stack. When the method finishes, the frame is popped from the stack and control returns to the calling method.
+This frame is pushed on top of the Call Stacks. When the method finishes, the frame is popped from the stack and control returns to the calling method.
 
 **Practical Example:**
 
@@ -147,11 +147,11 @@ static void methodC() {
 }
 ```
 
-When you see the **stack trace** of an exception, you are literally seeing the contents of the Call Stack at the moment of the error, from bottom to top.
+When you see the **stack trace** of an exception, you are literally seeing the contents of the Call Stacks at the moment of the error, from bottom to top.
 
 #### StackOverflowError
 
-If there are many recursive calls or an infinite recursion, the Call Stack reaches its size limit and the JVM throws a `StackOverflowError`.
+If there are many recursive calls or an infinite recursion, the Call Stacks reaches its size limit and the JVM throws a `StackOverflowError`.
 
 **Configuration:** The stack size can be adjusted with the `-Xss` flag in the JVM.
 
