@@ -53,7 +53,7 @@ public static Integer sum(Integer[] array, int index) {
 
 ***Divide and Conquer is a recursive strategy that solves a problem by breaking it into smaller subproblems of the same kind:***
 
-Each recursive call handles one element and delegates the rest to the next call. **The structure always follows three steps:**
+Each recursive call handles one element and delegates the rest to the previous call. **The structure always follows three steps:**
 
 Divide → reduce the problem by one unit. Conquer → solve the base case. Combine → return the accumulated result up the call stack.
 
@@ -125,7 +125,7 @@ Integer max = MaxValueInListArray.max(values, 0, 0); // 9
 | MaxValue | List, Integer[] | Accumulate via parameter | ✔ |
 
 **Differences between implementations:**
-- **ArraySum**: Accumulates the result through the return value, each frame adds its element to the value returned by the next call
+- **ArraySum**: Accumulates the result through the return value, each frame adds its element to the value returned by the previous call
 - **CountElements**: Accumulates through the index, the base case returns the final index value, which equals the size of the collection
 - **MaxValue**: Accumulates through a parameter, the current maximum is carried forward in each call rather than computed on the way back
 
@@ -185,7 +185,7 @@ Integer resultArray = ItemsInTheListArray.counterListElements(array, 0);
 
 ### MaxValue
 
-MaxValue finds the largest value in a List or array. The current maximum is passed as a parameter on each call. If the element at the current index is greater than the stored maximum, it replaces it before the next recursive call.
+MaxValue finds the largest value in a List or array. The current maximum is passed as a parameter on each call. If the element at the current index is greater than the stored maximum, it replaces it before the previous recursive call.
 
 Call stack for `[3, 9, 1]`:
 

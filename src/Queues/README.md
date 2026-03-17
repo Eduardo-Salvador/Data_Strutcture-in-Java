@@ -238,7 +238,7 @@ start = (start + 1) % this.elements.length;
 
 ### Linked Queue
 
-A LinkedQueue uses a singly linked list via `NodeStructure`. Each node holds data and a reference to the next node. The `head` pointer always points to the front of the queue.
+A LinkedQueue uses a singly linked list via `NodeStructure`. Each node holds data and a reference to the previous node. The `head` pointer always points to the front of the queue.
 
 Characteristics:
 

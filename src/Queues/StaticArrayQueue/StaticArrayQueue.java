@@ -3,7 +3,6 @@ import StaticStructure.ArrayStructure;
 import java.util.Arrays;
 
 public class StaticArrayQueue<T> extends ArrayStructure<T> {
-
     public StaticArrayQueue(int capacity){
         super(capacity);
     }

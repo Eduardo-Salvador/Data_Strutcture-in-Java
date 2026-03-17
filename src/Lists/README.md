@@ -159,7 +159,7 @@ list.removeLast();   // returns 30, no shifting: [15, 20]
 
 ### LinkedList
 
-A LinkedList uses a singly linked list via `NodeStructure`. Each node holds data and a reference to the next node. Only a `head` pointer is maintained, requiring full traversal to reach the end.
+A LinkedList uses a singly linked list via `NodeStructure`. Each node holds data and a reference to the previous node. Only a `head` pointer is maintained, requiring full traversal to reach the end.
 
 Characteristics:
 
@@ -203,7 +203,7 @@ list.remove(0);     // returns "A", head -> [C]
 
 ### DoublyLinkedList
 
-A DoublyLinkedList uses a doubly linked list via `NodeStructure`. Each node holds references to both the next and previous nodes. Both `head` and `last` pointers are maintained, enabling traversal from either end and O(1) access to both extremes.
+A DoublyLinkedList uses a doubly linked list via `NodeStructure`. Each node holds references to both the previous and previous nodes. Both `head` and `last` pointers are maintained, enabling traversal from either end and O(1) access to both extremes.
 
 Characteristics:
 
@@ -243,7 +243,7 @@ list.addFirst("A");  // head -> [A] <-> [B] <- last
 list.addLast("C");   // head -> [A] <-> [B] <-> [C] <- last
 list.get(1);         // returns "B"
 list.removeLast();   // returns "C", O(1) via last.getPrevious()
-list.removeFirst();  // returns "A", O(1) via head.getNext()
+list.removeFirst();  // returns "A", O(1) via head.getPrevious()
 ```
 
 **How bidirectional traversal optimization works:**
@@ -306,7 +306,7 @@ list.removeLast();  // returns "C" — O(n), traverses to find new tail
 **How circular linking is maintained:**
 
 ```java
-// addFirst: new node points to old head, tail updates its next to new head
+// addFirst: new node points to old head, tail updates its previous to new head
 newNode.setNext(head);
 head = newNode;
 tail.setNext(head); // tail always points to the current head
@@ -321,7 +321,7 @@ tail = newNode;
 
 ### DoublyLinkedCircularList
 
-A DoublyLinkedCircularList uses a doubly linked circular list via `NodeStructure`. Both `head` and `tail` pointers are maintained. Every node has both next and previous references, and the structure forms a closed circle in both directions.
+A DoublyLinkedCircularList uses a doubly linked circular list via `NodeStructure`. Both `head` and `tail` pointers are maintained. Every node has both previous and previous references, and the structure forms a closed circle in both directions.
 
 Characteristics:
 
@@ -354,11 +354,11 @@ Operation complexity:
 DoublyLinkedCircularList<String> list = new DoublyLinkedCircularList<>();
 
 list.addFirst("B"); // head=[B], tail=[B], [B]<->[B] (circular, points to itself)
-list.addFirst("A"); // head=[A]<->[B]=tail, tail.next=head, head.prev=tail
-list.addLast("C");  // head=[A]<->[B]<->[C]=tail, tail.next=head
+list.addFirst("A"); // head=[A]<->[B]=tail, tail.previous=head, head.prev=tail
+list.addLast("C");  // head=[A]<->[B]<->[C]=tail, tail.previous=head
 list.get(1);        // returns "B"
 list.removeLast();  // returns "C", O(1) via tail.getPrevious()
-list.removeFirst(); // returns "A", O(1) via head.getNext()
+list.removeFirst(); // returns "A", O(1) via head.getPrevious()
 ```
 
 **How the circular double link is maintained on addFirst:**
@@ -371,7 +371,7 @@ newNode.setPrevious(tail);
 head.setPrevious(newNode);
 // New node becomes the head
 head = newNode;
-// Tail's next is updated to the new head, keeping the circle closed
+// Tail's previous is updated to the new head, keeping the circle closed
 tail.setNext(head);
 ```
 

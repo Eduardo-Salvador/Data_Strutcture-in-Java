@@ -165,7 +165,7 @@ return this.elements[(end - 1 + this.elements.length) % this.elements.length];
 
 ### Doubly Linked List Deque
 
-A DoublyLinkedListDeque uses a doubly linked list via `NodeStructure`. Each node holds data and references to both the next and previous nodes. The `start` and `end` pointers always reference the front and back nodes respectively, enabling O(1) operations at both ends without any traversal.
+A DoublyLinkedListDeque uses a doubly linked list via `NodeStructure`. Each node holds data and references to both the previous and previous nodes. The `start` and `end` pointers always reference the front and back nodes respectively, enabling O(1) operations at both ends without any traversal.
 
 Characteristics:
 
@@ -208,17 +208,17 @@ deque.removeFirst(); // returns "A", start=[B]=end
 **How addFirst and addLast manage boundary pointers:**
 
 ```java
-// addFirst: new node's next points to old start, old start's previous points back
+// addFirst: new node's previous points to old start, old start's previous points back
 start.setPrevious(newNode);
 newNode.setNext(start);
 start = newNode;
 
-// addLast: old end's next points to new node, new node's previous points back
+// addLast: old end's previous points to new node, new node's previous points back
 end.setNext(newNode);
 newNode.setPrevious(end);
 end = newNode;
 
-// removeLast: end moves one step back, its next reference is nulled
+// removeLast: end moves one step back, its previous reference is nulled
 end = end.getPrevious();
 end.setNext(null);
 ```

@@ -243,7 +243,7 @@ lista.addFirst("A");  // head -> [A] <-> [B] <- last
 lista.addLast("C");   // head -> [A] <-> [B] <-> [C] <- last
 lista.get(1);         // retorna "B"
 lista.removeLast();   // retorna "C", O(1) via last.getPrevious()
-lista.removeFirst();  // retorna "A", O(1) via head.getNext()
+lista.removeFirst();  // retorna "A", O(1) via head.getPrevious()
 ```
 
 **Como a otimização de travessia bidirecional funciona:**
@@ -306,7 +306,7 @@ lista.removeLast();  // retorna "C" — O(n), percorre para encontrar novo tail
 **Como a ligação circular é mantida:**
 
 ```java
-// addFirst: novo nó aponta para o antigo head, tail atualiza seu next para o novo head
+// addFirst: novo nó aponta para o antigo head, tail atualiza seu previous para o novo head
 newNode.setNext(head);
 head = newNode;
 tail.setNext(head); // tail sempre aponta para o head atual
@@ -321,7 +321,7 @@ tail = newNode;
 
 ### DoublyLinkedCircularList
 
-A DoublyLinkedCircularList utiliza uma lista duplamente encadeada circular via `NodeStructure`. Os ponteiros `head` e `tail` são mantidos. Cada nó possui referências next e previous, e a estrutura forma um círculo fechado em ambas as direções.
+A DoublyLinkedCircularList utiliza uma lista duplamente encadeada circular via `NodeStructure`. Os ponteiros `head` e `tail` são mantidos. Cada nó possui referências previous e previous, e a estrutura forma um círculo fechado em ambas as direções.
 
 Características:
 
@@ -354,24 +354,24 @@ Complexidade das operações:
 DoublyLinkedCircularList<String> lista = new DoublyLinkedCircularList<>();
 
 lista.addFirst("B"); // head=[B], tail=[B], [B]<->[B] (circular, aponta para si mesmo)
-lista.addFirst("A"); // head=[A]<->[B]=tail, tail.next=head, head.prev=tail
-lista.addLast("C");  // head=[A]<->[B]<->[C]=tail, tail.next=head
+lista.addFirst("A"); // head=[A]<->[B]=tail, tail.previous=head, head.prev=tail
+lista.addLast("C");  // head=[A]<->[B]<->[C]=tail, tail.previous=head
 lista.get(1);        // retorna "B"
 lista.removeLast();  // retorna "C", O(1) via tail.getPrevious()
-lista.removeFirst(); // retorna "A", O(1) via head.getNext()
+lista.removeFirst(); // retorna "A", O(1) via head.getPrevious()
 ```
 
 **Como a ligação dupla circular é mantida no addFirst:**
 
 ```java
-// Novo nó aponta para o antigo head (next) e para o tail (previous)
+// Novo nó aponta para o antigo head (previous) e para o tail (previous)
 newNode.setNext(head);
 newNode.setPrevious(tail);
 // O previous do antigo head é atualizado para o novo nó
 head.setPrevious(newNode);
 // Novo nó torna-se o head
 head = newNode;
-// O next do tail é atualizado para o novo head, mantendo o círculo fechado
+// O previous do tail é atualizado para o novo head, mantendo o círculo fechado
 tail.setNext(head);
 ```
 

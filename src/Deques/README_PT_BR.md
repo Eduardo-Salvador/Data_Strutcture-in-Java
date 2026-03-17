@@ -208,17 +208,17 @@ deque.removeFirst(); // retorna "A", start=[B]=end
 **Como addFirst e addLast gerenciam os ponteiros de extremidade:**
 
 ```java
-// addFirst: o next do novo nó aponta para o antigo start, o previous do antigo start aponta de volta
+// addFirst: o previous do novo nó aponta para o antigo start, o previous do antigo start aponta de volta
 start.setPrevious(newNode);
 newNode.setNext(start);
 start = newNode;
 
-// addLast: o next do antigo end aponta para o novo nó, o previous do novo nó aponta de volta
+// addLast: o previous do antigo end aponta para o novo nó, o previous do novo nó aponta de volta
 end.setNext(newNode);
 newNode.setPrevious(end);
 end = newNode;
 
-// removeLast: end recua um passo, sua referência next é anulada
+// removeLast: end recua um passo, sua referência previous é anulada
 end = end.getPrevious();
 end.setNext(null);
 ```

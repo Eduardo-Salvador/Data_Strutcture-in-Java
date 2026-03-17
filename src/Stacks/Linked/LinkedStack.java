@@ -18,7 +18,7 @@ public class LinkedStack<T> extends NodeStructure<T> {
             return;
         }
         Node<T> newNode = new Node<>(value);
-        newNode.setNext(head);
+        newNode.setPrevious(head);
         head = newNode;
         size++;
     }
@@ -37,7 +37,7 @@ public class LinkedStack<T> extends NodeStructure<T> {
             return null;
         }
         Node<T> deleted = head;
-        head = head.getNext();
+        head = head.getPrevious();
         size--;
         return deleted.getData();
     }
@@ -51,7 +51,7 @@ public class LinkedStack<T> extends NodeStructure<T> {
                 if (current.getData().equals(element)){
                     return counter;
                 }
-                current = current.getNext();
+                current = current.getPrevious();
                 counter++;
             }
         }
@@ -63,16 +63,10 @@ public class LinkedStack<T> extends NodeStructure<T> {
         return search(element) != -1;
     }
 
-    //O(n), but is possible O(1)
+    //O(1)
     public void clear() throws RuntimeException {
         if (isEmpty()){
             throw new RuntimeException("Empty Stack");
-        }
-        for (Node<T> actual = head; actual != null;){
-            Node<T> next =  actual.getNext();
-            actual.setData(null);
-            actual.setNext(null);
-            actual = next;
         }
         head = null;
         this.size = 0;
@@ -86,7 +80,7 @@ public class LinkedStack<T> extends NodeStructure<T> {
 
         while (current != null) {
             array[index++] = current.getData();
-            current = current.getNext();
+            current = current.getPrevious();
         }
         return array;
     }
@@ -102,10 +96,10 @@ public class LinkedStack<T> extends NodeStructure<T> {
 
         while (current != null) {
             sb.append(current.getData());
-            if (current.getNext() != null){
+            if (current.getPrevious() != null){
                 sb.append(", ");
             }
-            current = current.getNext();
+            current = current.getPrevious();
         }
         sb.append("]");
         return sb.toString();
