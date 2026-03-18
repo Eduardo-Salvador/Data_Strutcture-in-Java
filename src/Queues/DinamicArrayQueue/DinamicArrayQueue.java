@@ -47,12 +47,11 @@ public class DinamicArrayQueue<T> extends ArrayStructure<T> {
         System.out.println(this);
     }
 
-    //O(n), but is possible O(1)
+    //O(1)
     public void clear(){
         if (isEmpty()){
             return;
         }
-        Arrays.fill(elements, null);
         size = 0;
     }
 

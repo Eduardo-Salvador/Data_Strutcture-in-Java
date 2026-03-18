@@ -59,16 +59,10 @@ public class LinkedQueue<T> extends NodeStructure<T> {
         System.out.print("]\n");
     }
 
-    //O(n), but is possible O(1)
+    //O(1)
     public void clear(){
         if (isEmpty()){
             return;
-        }
-        for (Node<T> actual = head; actual != null;){
-            Node<T> next = actual.getNext();
-            actual.setData(null);
-            actual.setNext(null);
-            actual = next;
         }
         head = null;
         size = 0;
